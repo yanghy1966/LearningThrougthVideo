@@ -1,4 +1,5 @@
 [标准美国英语](https://en.wikipedia.org/wiki/General_American)
+[美音发音](https://pronuncian.com/pronounce-b-sound)
 英语书写的字母是26个
 英语的发音是44个音素
 # KK音标
