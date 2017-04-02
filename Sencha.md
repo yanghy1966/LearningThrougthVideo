@@ -91,8 +91,10 @@ user.save(); //POST /users
 - store有data数组的属性
 - store可以通过代理加载远程数据，具有proxy属性
 - store具有model属性
-
-
+- store也可以内嵌数据
+- 进行过滤，排序
+- store通过ID引用
+ 
 The Store class encapsulates a client side cache of Ext.data.Model objects. Stores load data via a Ext.data.proxy.Proxy, and also provide functions for sorting, filtering and querying the Ext.data.Model instances contained within it.
 
 ```js
@@ -102,4 +104,49 @@ store:{
       {}
    ]
 }
+```
+```js
+Ext.create('Ext.data.Store', {
+     model: 'User',
+     data : [
+         {firstName: 'Peter',   lastName: 'Venkman'},
+         {firstName: 'Egon',    lastName: 'Spengler'},
+         {firstName: 'Ray',     lastName: 'Stantz'},
+         {firstName: 'Winston', lastName: 'Zeddemore'}
+     ]
+ });
+
+```
+动态加载
+```js
+store.load({
+    params: {
+        group: 3,
+        type: 'user'
+    },
+    callback: function(records, operation, success) {
+        // do something after the load finishes
+    },
+    scope: this
+});
+```
+
+StoreId
+
+```js
+//this store can be used several times
+Ext.create('Ext.data.Store', {
+    model: 'User',
+    storeId: 'usersStore'
+});
+
+new Ext.List({
+    store: 'usersStore',
+    //other config goes here
+});
+
+new Ext.view.View({
+    store: 'usersStore',
+    //other config goes here
+});
 ```
