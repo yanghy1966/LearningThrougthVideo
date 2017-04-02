@@ -150,3 +150,40 @@ new Ext.view.View({
     //other config goes here
 });
 ```
+# 什么是ViewModel？
+- 视图模型是为实现binding而设计的，而store是为grid，tree等控件而设计的！
+- 具有bind()方法
+ 将感兴趣的数据传给回调函数。
+ 
+ ```js
+ var binding = vm.bind('{foo}', this.onFoo, this);
+
+binding.destroy();  // when done with the binding
+ 
+ ```
+ 
+ 
+ 
+- 绑定描述符：
+* 文本绑定描述符
+```js
+'Hello {user.name}!'
+'You have selected "{selectedItem.text}".'
+'{!isDisabled}'
+'{a > b ? "Bigger" : "Smaller"}'
+'{user.groups}'
+
+```
+** 双向绑定
+```js
+Ext.widget({
+     items: [{
+         xtype: 'textfield',
+         bind: '{s}'  // a two-way / direct bind descriptor
+     }]
+ });
+
+```
+对于textfield已经自动实现了双向绑定功能
+* 对象及数组/多绑定
+
