@@ -8,6 +8,10 @@
 * Slide
 # 什么是model？
 - 模型是对数据的定义
+- 具有fields属性
+- 具有一些函数属性
+- 具有validators
+- model也具有代理，可加载或保存至远程服务器，但是只能处理一个实体。而store能处理多个实体。
 
 A Model or Entity represents some object that your application manages. For example, one might define a Model for Users, Products, Cars, or other real-world object that we want to model in the system. Models are used by Ext.data.Store, which are in turn used by many of the data-bound components in Ext.
 
@@ -30,12 +34,65 @@ Ext.define('User', {
 });
 
 ```
+```js
+var user = Ext.create('User', {
+    id   : 'ABCD12345',
+    name : 'Conan',
+    age  : 24,
+    phone: '555-555-5555'
+});
 
+user.changeName();
+user.get('name'); //returns "Conan The Barbarian"
+```
+
+```js
+Ext.define('User', {
+    extend: 'Ext.data.Model',
+    fields: [
+        { name: 'name',     type: 'string' },
+        { name: 'age',      type: 'int' },
+        { name: 'phone',    type: 'string' },
+        { name: 'gender',   type: 'string' },
+        { name: 'username', type: 'string' },
+        { name: 'alive',    type: 'boolean', defaultValue: true }
+    ],
+
+    validators: {
+        age: 'presence',
+        name: { type: 'length', min: 2 },
+        gender: { type: 'inclusion', list: ['Male', 'Female'] },
+        username: [
+            { type: 'exclusion', list: ['Admin', 'Operator'] },
+            { type: 'format', matcher: /([a-z]+)[0-9]{2,3}/i }
+        ]
+    }
+});
+```
+
+```js
+Ext.define('User', {
+    extend: 'Ext.data.Model',
+    fields: ['id', 'name', 'email'],
+
+    proxy: {
+        type: 'rest',
+        url : '/users'
+    }
+});
+Here we've set up a Ext.data.proxy.Rest, which knows how to load and save data to and from a RESTful backend. Let's see how this works:
+
+var user = Ext.create('User', {name: 'Ed Spencer', email: 'ed@sencha.com'});
+
+user.save(); //POST /users
+```
 
 # 什么是store?
 - store有data数组的属性
 - store可以通过代理加载远程数据，具有proxy属性
 - store具有model属性
+
+
 The Store class encapsulates a client side cache of Ext.data.Model objects. Stores load data via a Ext.data.proxy.Proxy, and also provide functions for sorting, filtering and querying the Ext.data.Model instances contained within it.
 
 ```js
