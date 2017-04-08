@@ -1,5 +1,6 @@
 * 参考资料
  [Dock技术介绍](http://www.csdn.net/article/2014-07-02/2820497-what%27s-docker)
+[Docker技术深入分析](http://www.open-open.com/lib/view/open1423703640748.html)
 
 * 什么是Docker？
 
