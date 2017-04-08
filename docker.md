@@ -2,7 +2,12 @@
  - [Dock技术介绍](http://www.csdn.net/article/2014-07-02/2820497-what%27s-docker)
  - [Docker技术深入分析](http://www.open-open.com/lib/view/open1423703640748.html)
  - [深入理解容器](http://www.open-open.com/lib/view/open1446695630904.html)
- 
+ - [Docker命令详解](http://blog.csdn.net/permike/article/details/51879578)
+ - unionfs
+   统一文件系统：就是把多个只读曾和一个读写曾合并成一个统一读文件系统。容器
+  读最上面一层是可读可写读。
+  镜像 = 只读层
+  容器 = 一个或多个只读曾 + 一层RW层
 
 * 什么是Docker？
 
