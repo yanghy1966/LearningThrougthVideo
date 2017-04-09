@@ -8,6 +8,7 @@
   读最上面一层是可读可写读。
   镜像 = 只读层
   容器 = 一个或多个只读曾 + 一层RW层
+- [Docker技巧](http://www.cnblogs.com/elnino/p/3899136.html)
 
 * 什么是Docker？
 
