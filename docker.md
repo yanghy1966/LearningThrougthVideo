@@ -9,6 +9,7 @@
   镜像 = 只读层
   容器 = 一个或多个只读曾 + 一层RW层
 - [Docker技巧](http://www.cnblogs.com/elnino/p/3899136.html)
+ - [AuFS介绍](http://www.open-open.com/lib/view/open1440483391763.html)
 
 * 什么是Docker？
 
