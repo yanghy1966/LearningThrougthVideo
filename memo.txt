@@ -27,3 +27,11 @@ KillMode=process
 
 [Install]
 WantedBy=multi-user.target
+
+==============================
+经验：
+journalctl -f  查看log文件
+
+ExecStart中不能用-d参数
+Restart=always
+RestartSec=20
