@@ -6,3 +6,9 @@
   :vim foo **/*.js | copen
   :vim foo /path/**/*.js | copen
 
+* 系统复制粘贴
+先安装：
+sudo apt-get install vim-gnome
+就可以用：
+“+y:复制
+"+p:粘贴
