@@ -37,3 +37,14 @@ http://blog.csdn.net/wangbole/article/details/8163401
     $(()) 算术表达式
 9. 重新定向
     定向到文件中
+
+10. 简单命令扩展步骤：
+    10.1 
+
+
+
+
+
+
+
+
