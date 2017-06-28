@@ -1,7 +1,7 @@
 
  参考资料：
 http://www.sketchs.cn/tutorials/detail/232.html
-
+http://i.ui.cn/ucenter/84039
 
 # 四个重要步骤，分别对应:
 - Artboard “创建画板”, 
