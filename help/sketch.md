@@ -1,3 +1,8 @@
+
+ 参考资料：
+http://www.sketchs.cn/tutorials/detail/232.html
+
+
 # 四个重要步骤，分别对应:
 - Artboard “创建画板”, 
 - Rectangle “创建矩形”，
