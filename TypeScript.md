@@ -13,6 +13,10 @@
 ## 模块
 
 ## 基本语法
+
+[教程](https://www.w3cschool.cn/typescript/typescript-basic-types.html)
+
+
 ### 数据类型
 #### 布尔值
 let isDone: bollean = false;
@@ -48,6 +52,12 @@ let strLength: number = (someValue as string).length;
 
 ### 变量声明
 ### 接口
+
+interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+
 ### 类
 ### 函数
 ### 泛型
