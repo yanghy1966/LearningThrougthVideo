@@ -14,6 +14,38 @@
 
 ## 基本语法
 ### 数据类型
+#### 布尔值
+let isDone: bollean = false;
+
+#### 数字
+let decLiteral: nmber = 6;
+
+#### 字符串 
+let name: string = "bob";
+let user: string = 'admin';
+let name: string = `Gene`;
+
+#### 数组
+let list: number = [1,2,3];
+
+#### 元组
+let x: [string, number];
+
+#### 枚举
+enum Color {Red, Green, Blue};
+let c: Color = Color.Green;
+
+#### 任意值
+let notSure: any = 4;
+
+#### 空值
+void 没有任何类型
+
+#### 类型断言
+let strLength: number = (<string>someValue).length;
+let strLength: number = (someValue as string).length;
+
+
 ### 变量声明
 ### 接口
 ### 类
