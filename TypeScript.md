@@ -54,19 +54,109 @@ let strLength: number = (someValue as string).length;
 ### 接口
 
 interface SquareConfig {
-  color?: string;
+  color?: string; //可选属性
   width?: number;
 }
 
 ### 类
+```js
+class Greeter{
+   greeting: string;
+   constructor(message: string){
+         this.greeting = message;  //访问对象的属性 
+         greet(){
+       return "Hello, " + this.greeting;
+   }
+}
+}
+
+let greeter = new Greeter("world");
+
+```
+
+#### 继承
+
+```js
+class Snake extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 5) {
+        console.log("Slithering...");
+        super.move(distanceInMeters);
+    }
+}
+
+
+```
+#### 保护
+默认为public
+private
+protected
+
+#### 变量修饰符
+readonly
+
+
+
+
+
 ### 函数
 ### 泛型
 ### 枚举
+
+enum Direction {
+    Up = 1,
+    Down,
+    Left,
+    Right
+}
+
+
+
 ### 高级类型
 ### Symboles
 ### 迭代器和生成器
 ### 模块
+#### 导出
+class ZipCodeValidator implements StringValidator {
+    isAcceptable(s: string) {
+        return s.length === 5 && numberRegexp.test(s);
+    }
+}
+export { ZipCodeValidator };
+export { ZipCodeValidator as mainValidator };
+
+#### 导入
+
+import { ZipCodeValidator } from "./ZipCodeValidator";
+
+let myValidator = new ZipCodeValidator();
+
+
 ### 命名空间
+
+namespace Validation {
+    export interface StringValidator {
+        isAcceptable(s: string): boolean;
+    }
+
+    const lettersRegexp = /^[A-Za-z]+$/;
+    const numberRegexp = /^[0-9]+$/;
+
+    export class LettersOnlyValidator implements StringValidator {
+        isAcceptable(s: string) {
+            return lettersRegexp.test(s);
+        }
+    }
+
+    export class ZipCodeValidator implements StringValidator {
+        isAcceptable(s: string) {
+            return s.length === 5 && numberRegexp.test(s);
+        }
+    }
+}
+
+
+
 ### 命名空间和模块
 ### 模块解析
 ### 装饰器
