@@ -29,32 +29,26 @@
 
 class Main extends egret.DisplayObjectContainer {
 
+    private c: egret.Shape;
+
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
     private onAddToStage(event: egret.Event) {
-        this.createGameScene();
+        this.c = new egret.Shape();
+        this.c.graphics.beginFill(0xa0a0a0);
+        this.c.graphics.drawCircle(200, 200, 100);
+        this.c.graphics.endFill();
+        this.addChild(this.c);
+        this.addEventListener(egret.Event.ENTER_FRAME, this.enterFrameHandler, this);
     }
 
-    /**
-     * 创建游戏场景
-     * Create a game scene
-     */
-    private createGameScene() {
-        console.log('hi2');
-        // load image
-        RES.getResByUrl('resource/assets/image1.png',this.onComplete, this, RES.ResourceItem.TYPE_IMAGE);
+    private enterFrameHandler(event: egret.Event) {
+        this.x += 1;
     }
 
-    private onComplete(event: any):void{
-        let img: egret.Texture = <egret.Texture> event;
-        let bitmap: egret.Bitmap = new egret.Bitmap(img);
-
-        // addChild
-        this.addChild(bitmap);
-    }
 
 }
 
