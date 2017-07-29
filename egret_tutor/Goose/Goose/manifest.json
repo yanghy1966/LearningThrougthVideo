@@ -1,0 +1,18 @@
+{
+	"initial": [
+		"libs/modules/egret/egret.js",
+		"libs/modules/egret/egret.web.js",
+		"libs/modules/game/game.js",
+		"libs/modules/res/res.js",
+		"libs/modules/experimental/experimental.js",
+		"libs/modules/tween/tween.js",
+		"promise/bin/promise.js"
+	],
+	"game": [
+		"bin-debug/classes/framework/GameFrameWork.js",
+		"bin-debug/classes/framework/BasicScreen.js",
+		"bin-debug/classes/framework/FrameWorkStates.js",
+		"bin-debug/LoadingUI.js",
+		"bin-debug/projects/stubgame/Main.js"
+	]
+}
