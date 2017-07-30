@@ -40,218 +40,167 @@ module goose {
         // setup background
         public setApplicationBackGround(width: number, height: number,
                                         isTransparent: boolean = false, color: number = 0x000000): void {
-            let appBackBitmapData = new egret.BitmapData(width, height, isTransparent, color);
-            let appBackBitmap = new egret.Bitmap(appBackBitmapData);
-            this.addChild(appBackBitmap);
+            //let appBackBitmapData = new egret.BitmapData(width, height, isTransparent, color);
+            //let appBackBitmap = new egret.Bitmap(appBackBitmapData);
+            //this.addChild(appBackBitmap);
+            var rec1:egret.Sprite  = new goose.RectWithColor(width,height,isTransparent,color);
+            this.addChild(rec1);
         }
 
-        /*
         // start Timer
         public startTimer(): void {
-            timerPeriod = 1000 / frameRate;
-            gameTimer = new egret.Timer(timerPeriod);
-            gameTimer.addEventListener(egret.TimerEvent.TIMER, this.runGame);
-            gemeTimer.start();
+            this.timerPeriod = 1000 / this.frameRate;
+            this.gameTimer = new egret.Timer(this.timerPeriod);
+            this.gameTimer.addEventListener(egret.TimerEvent.TIMER, this.runGame);
+            this.gameTimer.start();
         }
 
         public runGame(e: egret.TimerEvent): void {
-            systemFunction();
+            this.systemFunction();
             e.updateAfterEvent();
         }
 
         public switchSystemState(stateval: number): void {
-            lastSystemState = currentSystemState;
-            currentSystemState = stateval;
+            this.lastSystemState = this.currentSystemState;
+            this.currentSystemState = stateval;
             switch (stateval) {
                 case FrameWorkStates.STATE_SYSTEM_WAIT:
-                    systemFunction = systemWait;
+                    systemFunction = this.systemWait;
                     break;
                 case FrameWorkStates.STATE_SYSTEM_WAIT_FOR_CLOSE:
-                    systemFunction = systemWaitForClose;
+                    systemFunction = this.systemWaitForClose;
                     break;
                 case FrameWorkStates.STATE_SYSTEM_TITLE:
-                    systemFunction = systemTitle;
+                    systemFunction = this.systemTitle;
                     break;
                 case FrameWorkStates.STATE_SYSTEM_INSTRUCTIONS:
-                    systemFunction = systemInstructions;
+                    systemFunction = this.systemInstructions;
                     break;
                 case FrameWorkStates.STATE_SYSTEM_NEW_GAME:
-                    systemFunction = systemNewGame;
+                    systemFunction = this.systemNewGame;
                     break;
                 case FrameWorkStates.STATE_SYSTEM_NEW_LEVEL:
-                    systemFunction = systemNewLevel;
+                    systemFunction = this.systemNewLevel;
                     break;
                 case FrameWorkStates.STATE_SYSTEM_LEVEL_IN:
-                    systemFunction = systemLevelIn;
+                    systemFunction = this.systemLevelIn;
                     break;
                 case FrameWorkStates.STATE_SYSTEM_GAME_PLAY:
-                    systemFunction = systemGamePlay;
+                    systemFunction = this.systemGamePlay;
                     break;
                 case FrameWorkStates.STATE_SYSTEM_GAME_OVER:
-                    systemFunction = systemGameOver;
+                    systemFunction = this.systemGameOver;
                     break;
             }
         }// end
 
         public systemTitle(): void {
-            this.addChild(titleScreen);
-            titleScreen.addEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener, false, 0, true);
-            switchSystemState(FrameWorkStates.STATE_SYSTEM_WAIT_FOR_CLOSE);
-            nextSystemState = FrameWorkStates.STATE_SYSTEM_INSTRUCTIONS;
+            this.addChild(this.titleScreen);
+            this.titleScreen.addEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener, false, 0, true);
+            this.switchSystemState(FrameWorkStates.STATE_SYSTEM_WAIT_FOR_CLOSE);
+            this.nextSystemState = FrameWorkStates.STATE_SYSTEM_INSTRUCTIONS;
         }
 
         public systemInstructions(): void {
-            this.addChild(instructionsScreen);
-            instructionsScreen.addEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener, false, 0, true);
-            switchSystemState(FrameWorkStates.STATE_SYSTEM_WAIT_FOR_CLOSE);
-            nextSystemState = FrameWorkStates.STATE_SYSTEM_NEW_GAME;
+            this.addChild(this.instructionsScreen);
+            this.instructionsScreen.addEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener, false, 0, true);
+            this.switchSystemState(FrameWorkStates.STATE_SYSTEM_WAIT_FOR_CLOSE);
+            this.nextSystemState = FrameWorkStates.STATE_SYSTEM_NEW_GAME;
         }
 
         public systemNewGame(): void {
-            addChild(game);
-            game.addEventListener(CustomEventScoreBoardUpdate.UPDATE_TEXT, scoreBoardUpdateListener, false, 0, true);
-            game.addEventListener(CustomEventLevelScreenUpdate.UPDATE_TEXT, levelScreenUpdateListener, false, 0, true);
-            game.addEventListener(Game.GAME_OVER, gameOverListener, false, 0, true);
-            game.addEventListener(Game.NEW_LEVEL, newLevelListener, false, 0, true);
-            game.newGame();
-            switchSystemState(FrameWorkStates.STATE_SYSTEM_NEW_LEVEL);
+            this.addChild(this.game);
+            this.game.addEventListener(CustomEventScoreBoardUpdate.UPDATE_TEXT, scoreBoardUpdateListener, false, 0, true);
+            this.game.addEventListener(CustomEventLevelScreenUpdate.UPDATE_TEXT, levelScreenUpdateListener, false, 0, true);
+            this.game.addEventListener(Game.GAME_OVER, gameOverListener, false, 0, true);
+            this.game.addEventListener(Game.NEW_LEVEL, newLevelListener, false, 0, true);
+            this.game.newGame();
+            this.switchSystemState(FrameWorkStates.STATE_SYSTEM_NEW_LEVEL);
         }
 
         public systemNewLevel(): void {
-            game.newLevel();
-            switchSystemState(FrameWorkStates.STATE_SYSTEM_LEVEL_IN);
+            this.game.newLevel();
+            this.switchSystemState(FrameWorkStates.STATE_SYSTEM_LEVEL_IN);
         }
 
         public systemLevelIn(): void {
-            addChild(levelInScreen);
-            waitTime = 30;
-            switchSystemState(FrameWorkStates.STATE_SYSTEM_WAIT);
-            nextSystemState = FrameWorkStates.STATE_SYSTEM_GAME_PLAY;
+            this.addChild(this.levelInScreen);
+            this.waitTime = 30;
+            this.switchSystemState(FrameWorkStates.STATE_SYSTEM_WAIT);
+            this.nextSystemState = FrameWorkStates.STATE_SYSTEM_GAME_PLAY;
             addEventListener(EVENT_WAIT_COMPLETE, waitCompleteListener, false, 0, true);
         }
 
         public systemGameOver(): void {
-            removeChild(game);
-            addChild(gameOverScreen);
-            gameOverScreen.addEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener, false, 0, true);
-            switchSystemState(FrameWorkStates.STATE_SYSTEM_WAIT_FOR_CLOSE);
-            nextSystemState = FrameWorkStates.STATE_SYSTEM_TITLE;
+            this.removeChild(this.game);
+            this.addChild(this.gameOverScreen);
+            this.gameOverScreen.addEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener, false, 0, true);
+            this.switchSystemState(FrameWorkStates.STATE_SYSTEM_WAIT_FOR_CLOSE);
+            this.nextSystemState = FrameWorkStates.STATE_SYSTEM_TITLE;
         }
 
         public systemGamePlay(): void {
-            game.runGame();
+            this.game.runGame();
         }
 
         public systemWaitForClose(): void {
             //do nothing
-            // }
-        public
-            systemWait()
-        :
-            void {
-                waitCount++;
-            if (waitCount > waitTime) {
-                waitCount = 0;
+             }
+        public systemWait(): void {
+                this.waitCount ++;
+            if (this.waitCount > this.waitTime) {
+                this.waitCount = 0;
                 dispatchEvent(new Event(EVENT_WAIT_COMPLETE));
             }
         }
-        public
-            okButtonClickListener(e
-        :
-            CustomEventButtonId
-        ):
-            void {
-                switch(e.id
-        )
-            {
-            case
-                FrameWorkStates.STATE_SYSTEM_TITLE
-            :
-                removeChild(titleScreen);
-                titleScreen.removeEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener);
+        public okButtonClickListener(e : CustomEventButtonId ): void {
+                switch(e.id ) {
+            case FrameWorkStates.STATE_SYSTEM_TITLE :
+                this.removeChild(this.titleScreen);
+                this.titleScreen.removeEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener);
                 break;
-            case
-                FrameWorkStates.STATE_SYSTEM_INSTRUCTIONS
-            :
-                removeChild(instructionsScreen);
-                instructionsScreen.removeEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener);
+            case FrameWorkStates.STATE_SYSTEM_INSTRUCTIONS :
+                this.removeChild(this.instructionsScreen);
+                this.instructionsScreen.removeEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener);
                 break;
-            case
-                FrameWorkStates.STATE_SYSTEM_GAME_OVER
-            :
-                removeChild(gameOverScreen);
-                gameOverScreen.removeEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener);
+            case FrameWorkStates.STATE_SYSTEM_GAME_OVER :
+                this.removeChild(this.gameOverScreen);
+                this.gameOverScreen.removeEventListener(CustomEventButtonId.BUTTON_ID, okButtonClickListener);
                 break;
             }
-            switchSystemState(nextSystemState);
+            this.switchSystemState(this.nextSystemState);
         }
-        public
-            scoreBoardUpdateListener(e
-        :
-            CustomEventScoreBoardUpdate
-        ):
-            void {
-                scoreBoard.update(e.element, e.value);
+        public scoreBoardUpdateListener(e : CustomEventScoreBoardUpdate ): void {
+                this.scoreBoard.update(e.element, e.value);
         }
-        public
-            levelScreenUpdateListener(e
-        :
-            CustomEventLevelScreenUpdate
-        ):
+        public levelScreenUpdateListener(e : CustomEventLevelScreenUpdate ):
             void {
-                levelInScreen.setDisplayText(levelInText + e.text);
+                this.levelInScreen.setDisplayText(levelInText + e.text);
         }
 
             //gameOverListener listens for Game.GAMEOVER simple
             // custom events calls and changes state accordingly
-        public
-            gameOverListener(e
-        :
-            Event
-        ):
-            void {switchSystemState(FrameWorkStates.STATE_SYSTEM_GAME_OVER
-        )
-            ;
-            game.removeEventListener(CustomEventScoreBoardUpdate.UPDATE_TEXT, scoreBoardUpdateListener);
-            game.removeEventListener(CustomEventLevelScreenUpdate.UPDATE_TEXT, levelScreenUpdateListener);
-            game.removeEventListener(Game.GAME_OVER, gameOverListener);
-            game.removeEventListener(Game.NEW_LEVEL, newLevelListener);
+        public gameOverListener(e : Event ): void {
+            this.switchSystemState(FrameWorkStates.STATE_SYSTEM_GAME_OVER ) ;
+            this.game.removeEventListener(CustomEventScoreBoardUpdate.UPDATE_TEXT, scoreBoardUpdateListener);
+            this.game.removeEventListener(CustomEventLevelScreenUpdate.UPDATE_TEXT, levelScreenUpdateListener);
+            this.game.removeEventListener(Game.GAME_OVER, gameOverListener);
+            this.game.removeEventListener(Game.NEW_LEVEL, newLevelListener);
         }
             //newLevelListener listens for Game.NEWLEVEL
             // simple custom events calls and changes state accordingly
-        public
-            newLevelListener(e
-        :
-            Event
-        ):
-            void {
-                switchSystemState(FrameWorkStates.STATE_SYSTEM_NEW_LEVEL
-        )
-
+        public newLevelListener(e : Event ): void {
+                this.switchSystemState(FrameWorkStates.STATE_SYSTEM_NEW_LEVEL )
         }
-        public
-            waitCompleteListener(e
-        :
-            Event
-        ):
-            void {
-                switch(lastSystemState) {
+        public waitCompleteListener(e : Event ): void {
+                switch(this.lastSystemState) {
                 case
-                    FrameWorkStates.STATE_SYSTEM_LEVEL_IN
-                :
-                    removeChild(levelInScreen);
+                    FrameWorkStates.STATE_SYSTEM_LEVEL_IN :
+                    this.removeChild(this.levelInScreen);
                     break
                 }
-
-                removeEventListener(EVENT_WAIT_COMPLETE, waitCompleteListener);
-            switchSystemState(nextSystemState);
-
+                this.removeEventListener(EVENT_WAIT_COMPLETE, waitCompleteListener);
+            this.switchSystemState(this.nextSystemState);
         }
-
-
         }
-
-         */
-    }
-
 }
