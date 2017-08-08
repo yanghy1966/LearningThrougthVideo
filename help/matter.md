@@ -33,3 +33,26 @@ Matter.World.addConstraint(world, constraint) → World
 # MouseConstraint
 # Events
 # Plugin
+
+
++-----------------------------------------+
+|                                         |
+|                                         |
+|      世界                               | 
+|                                         | 
+|      ( 添加 物体  )                      |
+|                                         |   
++-----------------------------------------+
+
+// Matter.Render 用法
+var engine = Engine.create();
+// ... 将物体加入到世界中
+var render = Render.create({
+    element: document.body,
+    engine: engine,
+    options: options
+});
+Engine.run(engine);
+Render.run(render);
+
+
