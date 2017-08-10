@@ -3,6 +3,11 @@ https://zhuanlan.zhihu.com/p/25604225
 API DOC
 http://brm.io/matter-js/docs/
 
+demo:
+http://brm.io/matter-js/
+
+
+
 常用模块:
 # Engin
 Matter.Engine负责产生和处理引擎.引擎是一个控制器,负责对世界的更新.
